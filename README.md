@@ -1,2 +1,3 @@
-# query-master
-Quiz project based on question and answering system.
+# Tourify
+
+Tourify is a simple tour management system. 
