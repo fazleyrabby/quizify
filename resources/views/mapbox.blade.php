@@ -7,12 +7,20 @@
     <title>MapLibre Example</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css" rel="stylesheet" />
+    {{-- <link href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css" rel="stylesheet" /> --}}
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js"></script>
+
     <style>
+        
         #map {
             height: 600px;
             width: 100%;
             display: none;
+        }
+
+        canvas.mapboxgl-canvas{
+            width: 100%;
         }
 
         .suggestions:not(:empty) {
@@ -71,13 +79,16 @@
             <button type="button" id="submitBtn" class="btn btn-primary mb-4">Submit</button>
             <button type="button" id="removeInitialMarkerBtn" class="btn btn-secondary mb-4">Remove Current Location</button>
 
-            <div id="map"></div>
+            
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
             
         </main>
     </div>
 
-    <input type="hidden" id="maptilerKey" value="{{ env("MAPTILER_API_KEY") }}">
-    <script src="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js"></script>
+    <input type="hidden" id="mapboxKey" value="{{ env("MAPBBOX_PUBLIC_TOKEN") }}">
+    {{-- <script src="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js"></script> --}}
     <script src="{{ asset('frontend/map.js') }}"></script>
 </body>
 

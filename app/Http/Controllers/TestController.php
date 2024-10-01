@@ -9,7 +9,7 @@ class TestController extends Controller
 {
     public function index(){
         $vehicles = Vehicle::all();
-        return view('maplibre', compact('vehicles'));
+        return view('mapbox', compact('vehicles'));
     }
 
     public function check(Request $request){
