@@ -52,6 +52,7 @@ function initMap() {
             // Fetch the location name for "From"
             fetchLocationName(coordinates).then(locationName => {
                 document.getElementById('from').value = locationName;
+                document.getElementById('from-lat-lng').value = JSON.stringify(fromLatLng);
 
                 // Remove the previous "From" marker if it exists
                 if (fromMarker) fromMarker.remove();
@@ -69,7 +70,7 @@ function initMap() {
             // Fetch the location name for "To"
             fetchLocationName(coordinates).then(locationName => {
                 document.getElementById('to').value = locationName;
-
+                document.getElementById('to-lat-lng').value = JSON.stringify(toLatLng);
                 // Remove the previous "To" marker if it exists
                 if (toMarker) toMarker.remove();
 
@@ -153,7 +154,7 @@ function fetchSuggestions(input, type) {
                     // Set the latitude and longitude
                     if (type === 'from') {
                         fromLatLng = feature.geometry.coordinates;
-                        console.log(fromLatLng)
+                        document.getElementById('from-lat-lng').value = JSON.stringify(fromLatLng);
                         if (fromMarker) fromMarker.remove();
                         fromMarker = new mapboxgl.Marker()
                             .setLngLat(fromLatLng)
@@ -162,6 +163,7 @@ function fetchSuggestions(input, type) {
                         map.setCenter(fromLatLng); // Center the map on the selected location
                     } else if(type === 'to') {
                         toLatLng = feature.geometry.coordinates;
+                        document.getElementById('to-lat-lng').value = JSON.stringify(toLatLng);
                         if (toMarker) toMarker.remove();
                         toMarker = new mapboxgl.Marker()
                             .setLngLat(toLatLng)
@@ -191,14 +193,14 @@ document.getElementById('to').addEventListener('input', function () {
 });
 
 // Submit button functionality (calculate distance or do other actions)
-document.getElementById('submitBtn').addEventListener('click', function () {
-    if (fromLatLng && toLatLng) {
-        const distance = getDistance(fromLatLng, toLatLng);
-        document.getElementById('distanceDisplay').innerText = `${distance.toFixed(2)} km`;
-    } else {
-        alert('Please select both From and To locations.');
-    }
-});
+// document.getElementById('submitBtn').addEventListener('click', function () {
+//     if (fromLatLng && toLatLng) {
+//         const distance = getDistance(fromLatLng, toLatLng);
+//         document.getElementById('distanceDisplay').innerText = `${distance.toFixed(2)} km`;
+//     } else {
+//         alert('Please select both From and To locations.');
+//     }
+// });
 
 // Calculate distance between two points
 function getDistance(from, to) {
@@ -291,7 +293,7 @@ function getRoute() {
             if (data.routes && data.routes.length > 0) {
                 const route = data.routes[0].geometry.coordinates; // Get the route coordinates
                 drawRoute(route); // Draw the route on the map
-                calculateDistance(); // Update the distance display
+                // calculateDistance(); // Update the distance display
             } else {
                 // alert('Route not found.');
             }

@@ -7,4 +7,6 @@ Route::get('/', [TestController::class, 'index']);
 
 
 Route::get('/test', [TestController::class , 'seed']);
-Route::post('/check', [TestController::class , 'check'])->name('check');
+Route::post('/estimate', [TestController::class , 'estimate'])->name('estimate');
+
+Route::get('/filter-vehicles', [TestController::class, 'filterVehicles'])->name('filter');
