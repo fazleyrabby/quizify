@@ -10,7 +10,8 @@ class TestController extends Controller
     public function index()
     {
         $vehicles = Vehicle::toBase()->where('status', true)->get();
-        return view('mapbox', compact('vehicles'));
+        return view('google-map', compact('vehicles'));
+        // return view('mapbox', compact('vehicles'));
     }
 
     public function estimate(Request $request)
@@ -18,11 +19,10 @@ class TestController extends Controller
         $estimatedCost = 0;
         $fromLatLng = json_decode($request->from_lat_lng, true);
         $toLatLng = json_decode($request->to_lat_lng, true);
-
+        
         $distance = calculateDistance($fromLatLng, $toLatLng);
         $estimatedCost += costByDistance($distance);
         $estimatedCost = $this->calculateVehicleCost($request->all(), $estimatedCost);
-
 
         dd('Your estimated cost is: ' . $estimatedCost . " USD");
     }

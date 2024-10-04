@@ -34,7 +34,6 @@ function calculateDistance($fromLatLng, $toLatLng) {
     return $distance;
 }
 
-
 function costByDistance($distance){
     return match (true) {
         $distance >= 10 && $distance <= 40  => 100,
