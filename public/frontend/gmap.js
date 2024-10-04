@@ -6,7 +6,6 @@ var fromMarker = null;
 var toMarker = null;
 var userLatLng = null; // Variable to hold user's location
 var initialMarker = null; // Reference to store the initial marker
-const apiKey = "AIzaSyBZufSNTXgmLBmRhCZ3gZEDBdie4pcWW_c"; // Replace with your Google Maps API key
 
 // Initialize the map
 function initMap() {
